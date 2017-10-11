@@ -7,7 +7,7 @@ __wallNumber = 10
 def main():
     world = World(__height, __width)
     world.placeRandomWalls(__wallNumber)
-    
+
 
     world.printMap()
 
