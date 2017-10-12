@@ -1,6 +1,6 @@
 from model.World import World
 
-__height = 10
+__height = 5
 __width = 10
 __wallNumber = 8
 __foodNumber = 11
