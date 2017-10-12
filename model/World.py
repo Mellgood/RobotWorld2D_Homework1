@@ -10,7 +10,7 @@ class World:
     def printMap(self):
         self.__worldMap.printMap()
 
-    def placeRandomWalls(self, number):
+    def placeRandomObject(self, object, number):
         for i in range(number):
             placed = False
             count = 0
@@ -18,12 +18,11 @@ class World:
                 count = count + 1
                 y = random.randrange(self.__worldMap.getHeight())
                 x = random.randrange(self.__worldMap.getWidth())
-                if self.__worldMap.placeNewObjectAt(x,y,'#') == 0: #If placeNewObjectAt succeded i breack the cycle
+                if self.__worldMap.placeNewObjectAt(x,y,object) == 0: #If placeNewObjectAt succeded i breack the cycle
                     placed = True
 
-
-
+            #debug..
             if not placed:
-                print('### ERROR ###')
+                print('### ERROR placing object ###')
                 if not count<1000:
-                    print('Cant place that piece of wall after 1000 attempts')
+                    print('Cant place that object (', object, ') even after 1000 attempts!!')
