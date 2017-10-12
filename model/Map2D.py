@@ -24,11 +24,12 @@ class Map2D:
             self.__map[x][y] = newCel
             return 0
 
-
         return -1
 
-    def getAt(self,x,y):
-        return self.__map[x][y]
+    def getAt(self, x, y):
+        if(x > -1 and y > -1 and x < self.__width and y < self.__height):
+            return self.__map[x][y]
+        else: return '#' #out of map
 
     def getWidth(self):
         return self.__width
