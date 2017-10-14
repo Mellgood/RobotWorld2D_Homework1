@@ -1,3 +1,5 @@
+import operator
+
 from model.Map2D import Map2D
 import random
 
@@ -51,11 +53,26 @@ class World:
         self.__worldMap.move (x0,y0,x1,y1)
         return points
 
-    def printScoreboard(self):
-        for i in self.__robotList:
-            robot = self.__robotList.get(i)
-            print('Name  Score')
-            print(robot.getRobotName(), '      ', robot.getPoints())
+    def printScoreboard(self, select):
+        if str(select).upper() == 'NAME':
+            for i in self.__robotList:
+                robot = self.__robotList.get(i)
+                print('Name  Score')
+                print(robot.getRobotName(), '      ', robot.getPoints())
+        if str(select).upper() == 'SCORE':
+            scoreBoard = {}
+            for i in self.__robotList:
+                robot = self.__robotList.get(i)
+                name = robot.getRobotName()
+                score = robot.getPoints()
+                scoreBoard.update({name: score})
+            scoreBoard = sorted(scoreBoard.items(), key=operator.itemgetter(1), reverse=True)
+
+            for i in scoreBoard:
+                print(i[0], '      ', i[1])
+
+
+
 
     def getNumberOfFoodToFind(self):
         food=0

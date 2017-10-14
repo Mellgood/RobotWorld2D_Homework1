@@ -1,10 +1,10 @@
 from model.World import World
 
-__height = 5
-__width = 5
-__wallNumber = 5
-__foodNumber = 5
-__robotNumber = 5
+__height = 10
+__width = 10
+__wallNumber = 20
+__foodNumber = 25
+__robotNumber = 10
 
 __wallSymbol = '#'
 __foodSymbol = 'F' # I used 'F' instead of 'o' due to readability problems :)
@@ -33,7 +33,7 @@ def main():
         print('map at the end of the round ',turno, ':')
         world.printMap()
         print()
-        world.printScoreboard()
+        world.printScoreboard('SCORE')
         print('____________________Round ',turno ,' end____________________________')
 
         turno += 1
@@ -42,8 +42,8 @@ def main():
 
 
 
-    print('END OF THE GAME')
-    world.printScoreboard()
+    print('END OF THE GAME: ', foodEaten, ' F has been eaten and ', world.getNumberOfFoodToFind(), ' F are still on the map')
+    world.printScoreboard('SCORE')
 
 
 
