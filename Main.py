@@ -23,17 +23,26 @@ def main():
     print()
     print()
 
-    for i in range(10):
-        print('____________________Round ', i+1,' begin__________________________')
+    foodEaten = 0
+    turno=1
+    while foodEaten < __foodNumber and turno < __foodNumber*100: #after all these turns i stop the simulation to avoid loops
+        #input('Press enter to continue: ')
+        print('____________________Round ', turno,' begin__________________________')
         world.tick()
         print()
-        print('map at the end of the round ',i+1, ':')
+        print('map at the end of the round ',turno, ':')
         world.printMap()
-        print('____________________Round ',i+1 ,' end____________________________')
+        print()
+        world.printScoreboard()
+        print('____________________Round ',turno ,' end____________________________')
+
+        turno += 1
+        foodEaten = __foodNumber - world.getNumberOfFoodToFind()
 
 
 
 
+    print('END OF THE GAME')
     world.printScoreboard()
 
 

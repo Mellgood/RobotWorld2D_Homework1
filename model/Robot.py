@@ -33,7 +33,7 @@ class Robot:
         newView = self.__world.getViewFrom(self.__posX, self.__posY)
         self.__view.update(newView)
 
-        self.printView()
+        #self.printView()
 
     def think(self):
         isEndOfThink = False

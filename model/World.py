@@ -57,6 +57,23 @@ class World:
             print('Name  Score')
             print(robot.getRobotName(), '      ', robot.getPoints())
 
+    def getNumberOfFoodToFind(self):
+        food=0
+        for x in range(self.__worldMap.getWidth()):
+            for y in range(self.__worldMap.getHeight()):
+                if self.__worldMap.getAt(x,y) == 'F':
+                    food +=1
+        return food
+
+
+    def getScores(self):
+        scoreBoard = {}
+        robot =None
+        for i in self.__robotList:
+            robot = self.__robotList.get(i)
+        scoreBoard.update({robot.getRobotName():robot.getPoints()})
+
+
 
     def placeRandomObject(self, object, number):
         # need to handle Robots in a different way... (due to mandatory specs i can not design this part in a more adaptable way :( )

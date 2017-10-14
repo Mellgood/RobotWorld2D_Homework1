@@ -32,7 +32,7 @@ class Map2D:
         else: return '#' #out of map
 
     def move(self,x0,y0,x1,y1):
-        print(self.__map[y0][x0], ' AAAAAA x0 y0 x1 y1 ' ,x0, y0, x1, y1 , ' / ', self.__map[y1][x1])
+        #print(self.__map[y0][x0], ' AAAAAA x0 y0 x1 y1 ' ,x0, y0, x1, y1 , ' / ', self.__map[y1][x1])
         self.__map[y1][x1] = self.__map[y0][x0]
         self.__map[y0][x0] = '0'
 
