@@ -27,7 +27,7 @@ class Robot:
         newView = self.__world.getViewFrom(self.__posX, self.__posY)
         self.__view.update(newView)
 
-        #self.printView()
+        self.printView()
 
     def think(self):
         isEndOfThink = False
@@ -38,18 +38,20 @@ class Robot:
                 self.__direction = direction
                 isEndOfThink = True
 
+        #if there is no food, i have to think better, so I will move in a random direction :P
         if not isEndOfThink:
             directionsSet=[]
-            if not self.__view.get('N') == '#' and not str(self.__view.get('N'))[0] == 'R':
+            #I can move on a direction if and only if there is no wall or other robot there
+            if (not (str(self.__view.get('N')) == '#') and (not (str(self.__view.get('N'))[0] == 'R'))):
                 directionsSet.append('N')
-            if not self.__view.get('S') == '#' and not str(self.__view.get('S'))[0] == 'R':
+            if (not (str(self.__view.get('S')) == '#') and (not (str(self.__view.get('S'))[0] == 'R'))):
                 directionsSet.append('S')
-            if not self.__view.get('E') == '#' and not str(self.__view.get('E'))[0] == 'R':
+            if (not (str(self.__view.get('E')) == '#') and (not (str(self.__view.get('E'))[0] == 'R'))):
                 directionsSet.append('E')
-            if not self.__view.get('W') == '#' and not str(self.__view.get('W'))[0] == 'R':
-                directionsSet == 'W'
+            if (not (str(self.__view.get('W')) == '#') and (not (str(self.__view.get('W'))[0] == 'R'))):
+                directionsSet.append('W')
             if not directionsSet:
-                print(self.__name, ": Damn... I'm stucked here!! I can not move")
+                print(self.__name, ": Damn... I'm stucked here!! I can not move!")
                 self.__direction = None
             else:
                 self.__direction = random.choice(directionsSet)
@@ -57,7 +59,17 @@ class Robot:
 
     def move(self):
         if self.__direction:
-            print('Moving ', self.__direction)
+            print(self.__name,' Moving ', self.__direction , 'from x y: ' , self.__posX, ' ', self.__posY)
+            points = self.__world.moveAndGetPoint(self.__posX, self.__posY, self.__direction)
+
+            if self.__direction == 'N':
+                self.__posY += -1
+            if self.__direction == 'S':
+                self.__posY += 1
+            if self.__direction == 'E':
+                self.__posX += 1
+            if self.__direction == 'W':
+                self.__posX += -1
 
     def printView(self):
         print('    ', self.__view.get('N'))

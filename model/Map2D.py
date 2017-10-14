@@ -20,16 +20,21 @@ class Map2D:
         :param newCel: new obj string
         :return: 0: done, -1: not possible
         '''
-        if self.__map[x][y] == '0':
-            self.__map[x][y] = newCel
+        if self.__map[y][x] == '0':
+            self.__map[y][x] = newCel
             return 0
 
         return -1
 
     def getAt(self, x, y):
         if(x > -1 and y > -1 and x < self.__width and y < self.__height):
-            return self.__map[x][y]
+            return self.__map[y][x]
         else: return '#' #out of map
+
+    def move(self,x0,y0,x1,y1):
+        print(self.__map[y0][x0], ' AAAAAA x0 y0 x1 y1 ' ,x0, y0, x1, y1 , ' / ', self.__map[y1][x1])
+        self.__map[y1][x1] = self.__map[y0][x0]
+        self.__map[y0][x0] = '0'
 
     def getWidth(self):
         return self.__width

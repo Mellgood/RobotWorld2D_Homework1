@@ -22,15 +22,35 @@ class World:
 
     def getViewFrom(self, x, y):
         #note that while x is higher rightside (normal as human perception), y is higher downside!! so pay attention to it
-        s = self.__worldMap.getAt(x + 1, y)
-        n = self.__worldMap.getAt(x - 1, y)
-        e = self.__worldMap.getAt(x, y + 1)
-        w = self.__worldMap.getAt(x, y - 1)
+        e = self.__worldMap.getAt(x + 1, y)
+        w = self.__worldMap.getAt(x - 1, y)
+        s = self.__worldMap.getAt(x, y + 1)
+        n = self.__worldMap.getAt(x, y - 1)
 
         return {'N': n, 'S': s, 'E': e, 'W': w}
 
     def getRobotList(self):
         return self.__robotList
+
+    def moveAndGetPoint(self, x0, y0, direction):
+        points = 0
+        x1 = x0
+        y1 = y0
+        if direction == 'W':
+            x1 += -1
+        if direction == 'E':
+            x1 += 1
+        if direction == 'S':
+            y1 += 1
+        if direction == 'N':
+            y1 += -1
+
+        if self.__worldMap.getAt(x1, y1) == 'F':
+            points = 1 #1 point for the robot wich is eating the food!
+
+        self.__worldMap.move (x0,y0,x1,y1)
+        return points
+
 
     def placeRandomObject(self, object, number):
         # need to handle Robots in a different way... (due to mandatory specs i can not design this part in a more adaptable way :( )
@@ -48,8 +68,7 @@ class World:
             for i in range(number):
                 placed = False
                 count = 0
-                while (
-                    not placed and count < 1000):  # if i do more than 99 attempts there is just a few free space. Maybe i should find a place for it performing a visit on the matrix... naah the probability is too far, it seems a good compromise to me :P
+                while ( not placed and count < 1000 ):  # if i do more than 99 attempts there is just a few free space. Maybe i should find a place for it performing a visit on the matrix... naah the probability is too far, it seems a good compromise to me :P
                     count = count + 1
                     y = random.randrange(self.__worldMap.getHeight())
                     x = random.randrange(self.__worldMap.getWidth())
@@ -60,8 +79,7 @@ class World:
                 if not placed:
                     print('### ERROR placing object ###')
                     if not count < 1000:
-                        print('Cant place that object (', object, ') even after 1000 attempts!!')
+                        print('Cant place that object (', object, ') even after 1000 attempts!! Check input specs')
 
                 if (str(object))[0] == 'R':
                     return {'x':x, 'y':y}
-
