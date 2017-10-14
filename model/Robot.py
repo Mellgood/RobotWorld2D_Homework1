@@ -65,7 +65,7 @@ class Robot:
 
     def move(self):
         if self.__direction:
-            print(self.__name,' Moving ', self.__direction , 'from x y: ' , self.__posX, ' ', self.__posY)
+            #print(self.__name,' Moving ', self.__direction , 'from x y: ' , self.__posX, ' ', self.__posY)
             points = self.__world.moveAndGetPoint(self.__posX, self.__posY, self.__direction)
             self.__points += points
 
