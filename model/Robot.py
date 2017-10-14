@@ -9,6 +9,7 @@ class Robot:
     __map = None
     __view = None
     __direction = None
+    __points = 0
 
     def __init__(self, name, world, x, y):
         self.__name = name
@@ -22,6 +23,11 @@ class Robot:
         self.think()
         self.move()
 
+    def getPoints(self):
+        return self.__points
+
+    def getRobotName(self):
+        return self.__name
 
     def sense(self):
         newView = self.__world.getViewFrom(self.__posX, self.__posY)
@@ -61,6 +67,7 @@ class Robot:
         if self.__direction:
             print(self.__name,' Moving ', self.__direction , 'from x y: ' , self.__posX, ' ', self.__posY)
             points = self.__world.moveAndGetPoint(self.__posX, self.__posY, self.__direction)
+            self.__points += points
 
             if self.__direction == 'N':
                 self.__posY += -1

@@ -51,6 +51,12 @@ class World:
         self.__worldMap.move (x0,y0,x1,y1)
         return points
 
+    def printScoreboard(self):
+        for i in self.__robotList:
+            robot = self.__robotList.get(i)
+            print('Name  Score')
+            print(robot.getRobotName(), '      ', robot.getPoints())
+
 
     def placeRandomObject(self, object, number):
         # need to handle Robots in a different way... (due to mandatory specs i can not design this part in a more adaptable way :( )

@@ -20,26 +20,21 @@ def main():
 
     world.printMap()
 
-    print('____________________Round 1 begin__________________________')
-    world.tick()
     print()
-    print('map at the end of the round:')
-    world.printMap()
-    print('____________________Round 1 end__________________________')
+    print()
 
-    print('____________________Round 2 begin__________________________')
-    world.tick()
-    print()
-    print('map at the end of the round:')
-    world.printMap()
-    print('____________________Round 2 end__________________________')
+    for i in range(10):
+        print('____________________Round ', i+1,' begin__________________________')
+        world.tick()
+        print()
+        print('map at the end of the round ',i+1, ':')
+        world.printMap()
+        print('____________________Round ',i+1 ,' end____________________________')
 
-    print('____________________Round 3 begin__________________________')
-    world.tick()
-    print()
-    print('map at the end of the round:')
-    world.printMap()
-    print('____________________Round 3 end__________________________')
+
+
+
+    world.printScoreboard()
 
 
 
