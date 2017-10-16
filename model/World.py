@@ -1,5 +1,6 @@
 import operator
 
+from model.ConcreteGreedyThinkStrategy import ConcreteGreedyThinkStrategy
 from model.ConcreteRandomThinkStrategy import ConcreteRandomThinkStrategy
 from model.Map2D import Map2D
 import random
@@ -103,7 +104,12 @@ class World:
                 position = self.placeRandomObject(name, 1)
 
                 if(position):
-                    thinkContext = ThinkContext(ConcreteRandomThinkStrategy())
+                    chosePolicy = random.choice([0,1])
+                    if chosePolicy == 0:
+                        thinkContext = ThinkContext(ConcreteRandomThinkStrategy())
+
+                    if chosePolicy == 1:
+                        thinkContext = ThinkContext(ConcreteGreedyThinkStrategy())
                     robot = Robot(name, self, position.pop('x'), position.pop('y'), thinkContext)
                     self.__robotList.update({name: robot})
 
