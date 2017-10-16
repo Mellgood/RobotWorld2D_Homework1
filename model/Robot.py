@@ -1,5 +1,7 @@
 import random
 
+from model import IThinkStrategy, ThinkContext
+
 
 class Robot:
     __name = None
@@ -10,13 +12,18 @@ class Robot:
     __view = None
     __direction = None
     __points = 0
+    __thinkStrategy = None
 
-    def __init__(self, name, world, x, y):
+    def __init__(self, name, world, x, y, thinkStrategy:ThinkContext):
         self.__name = name
         self.__view = {'N': None, 'S': None, 'E': None, 'O': None}
         self.__posY = y
         self.__posX = x
         self.__world = world
+        self.__thinkStrategy = thinkStrategy
+
+    def setThinkStrategy(self, thinkStrategy:ThinkContext):
+        self.__thinkStrategy = thinkStrategy
 
     def tick(self):
         self.sense()
@@ -36,32 +43,9 @@ class Robot:
         #self.printView()
 
     def think(self):
-        isEndOfThink = False
-
-        for direction, obj in self.__view.items():
-            #If i have food on my field of view, i have to go there to get a point!
-            if obj == "F":
-                self.__direction = direction
-                isEndOfThink = True
-
-        #if there is no food, i have to think better, so I will move in a random direction :P
-        if not isEndOfThink:
-            directionsSet=[]
-            #I can move on a direction if and only if there is no wall or other robot there
-            if (not (str(self.__view.get('N')) == '#') and (not (str(self.__view.get('N'))[0] == 'R'))):
-                directionsSet.append('N')
-            if (not (str(self.__view.get('S')) == '#') and (not (str(self.__view.get('S'))[0] == 'R'))):
-                directionsSet.append('S')
-            if (not (str(self.__view.get('E')) == '#') and (not (str(self.__view.get('E'))[0] == 'R'))):
-                directionsSet.append('E')
-            if (not (str(self.__view.get('W')) == '#') and (not (str(self.__view.get('W'))[0] == 'R'))):
-                directionsSet.append('W')
-            if not directionsSet:
-                print(self.__name, ": Damn... I'm stucked here!! I can not move!")
-                self.__direction = None
-            else:
-                self.__direction = random.choice(directionsSet)
-
+        self.__direction = self.__thinkStrategy.getMoveDirection(self.__view)
+        #print(self.__direction)
+        #input('ok')
 
     def move(self):
         if self.__direction:

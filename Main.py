@@ -1,9 +1,9 @@
 import time
 
 from model.World import World
-__height = 50
-__width = 50
-__wallNumber = 20
+__height = 10
+__width = 10
+__wallNumber = 10
 __foodNumber = 25
 __robotNumber = 10
 

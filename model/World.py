@@ -1,9 +1,11 @@
 import operator
 
+from model.ConcreteRandomThinkStrategy import ConcreteRandomThinkStrategy
 from model.Map2D import Map2D
 import random
 
 from model.Robot import Robot
+from model.ThinkContext import ThinkContext
 
 
 class World:
@@ -101,7 +103,8 @@ class World:
                 position = self.placeRandomObject(name, 1)
 
                 if(position):
-                    robot = Robot(name, self, position.pop('x'), position.pop('y'))
+                    thinkContext = ThinkContext(ConcreteRandomThinkStrategy())
+                    robot = Robot(name, self, position.pop('x'), position.pop('y'), thinkContext)
                     self.__robotList.update({name: robot})
 
         else:
