@@ -61,7 +61,7 @@ class World:
             for i in self.__robotList:
                 robot = self.__robotList.get(i)
                 print('Name  Score')
-                print(robot.getRobotName(), '      ', robot.getPoints())
+                print(robot.getRobotName(), '\t', robot.getPoints())
         if str(select).upper() == 'SCORE':
             scoreBoard = {}
             for i in self.__robotList:
@@ -72,7 +72,7 @@ class World:
             scoreBoard = sorted(scoreBoard.items(), key=operator.itemgetter(1), reverse=True)
 
             for i in scoreBoard:
-                print(i[0], '      ', i[1])
+                print(i[0], '\t', i[1])
 
 
 
