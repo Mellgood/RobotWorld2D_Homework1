@@ -13,5 +13,5 @@ class ThinkContext:
     def getMoveDirection(self, view):
         return self._strategy.getDirection(view)
 
-    def getStrategy(self):
+    def getConcreteStrategy(self):
         return self._strategy

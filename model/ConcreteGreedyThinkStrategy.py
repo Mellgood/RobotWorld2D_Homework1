@@ -2,6 +2,9 @@ import random
 
 
 class ConcreteGreedyThinkStrategy:
+    def getName(self):
+        return __name__
+
     def getDirection(self, view: dict):
 
         isEndOfThink = False

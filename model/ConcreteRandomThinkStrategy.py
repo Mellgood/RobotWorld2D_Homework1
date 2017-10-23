@@ -4,6 +4,9 @@ from model.IThinkStrategy import IThinkStrategy
 
 
 class ConcreteRandomThinkStrategy(IThinkStrategy):
+    def getName(self):
+        return __name__
+
     def getDirection(self, view: dict):
         possibleMoves = []
         cardinalDirections = ['N', 'S', 'E', 'O']

@@ -25,7 +25,7 @@ class Robot:
     def setThinkStrategy(self, thinkStrategy:ThinkContext):
         self.__thinkStrategy = thinkStrategy
 
-    def getThinkStrategyName(self):
+    def getThinkContext(self):
         return self.__thinkStrategy
 
     def tick(self):

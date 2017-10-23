@@ -73,7 +73,7 @@ class World:
 
             for i in scoreBoard:
                 robot = self.__robotList.get(('R' + i[0][1]))
-                print(i[0], '\t', i[1], '\t', robot.getThinkStrategyName().getStrategy() )
+                print(i[0], '\t', i[1], '\t', robot.getThinkContext().getConcreteStrategy().getName().split(".")[1])
 
 
 
