@@ -72,7 +72,8 @@ class World:
             scoreBoard = sorted(scoreBoard.items(), key=operator.itemgetter(1), reverse=True)
 
             for i in scoreBoard:
-                print(i[0], '\t', i[1])
+                robot = self.__robotList.get(('R' + i[0][1]))
+                print(i[0], '\t', i[1], '\t', robot.getThinkStrategyName().getStrategy() )
 
 
 
