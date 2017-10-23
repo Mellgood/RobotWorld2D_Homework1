@@ -1,5 +1,8 @@
 import operator
 
+from pip.commands.list import tabulate
+from prettytable import PrettyTable
+
 from model.ConcreteGreedyThinkStrategy import ConcreteGreedyThinkStrategy
 from model.ConcreteRandomThinkStrategy import ConcreteRandomThinkStrategy
 from model.Map2D import Map2D
@@ -71,9 +74,14 @@ class World:
                 scoreBoard.update({name: score})
             scoreBoard = sorted(scoreBoard.items(), key=operator.itemgetter(1), reverse=True)
 
+            pos = 1
+            t = PrettyTable(['Position', 'Name', 'Score', 'Think Strategy'])
             for i in scoreBoard:
                 robot = self.__robotList.get(('R' + i[0][1]))
-                print(i[0], '\t', i[1], '\t', robot.getThinkContext().getConcreteStrategy().getName().split(".")[1])
+                #print(pos, ')\t\t',i[0], '\t\t', i[1], '\t\t', robot.getThinkContext().getConcreteStrategy().getName().split(".")[1])
+                t.add_row([ pos, i[0], i[1], robot.getThinkContext().getConcreteStrategy().getName().split(".")[1] ])
+                pos+=1
+            print (t)
 
 
 

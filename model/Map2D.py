@@ -9,7 +9,7 @@ class Map2D:
         self.__generateFloor()
 
     def __generateFloor(self):
-        self.__map = [['0' for i in range(self.__height)] for j in range(self.__width)]
+        self.__map = [['0' for i in range(self.__width)] for j in range(self.__height)]
 
     def placeNewObjectAt(self, x, y, newCel):
         '''
@@ -20,6 +20,7 @@ class Map2D:
         :param newCel: new obj string
         :return: 0: done, -1: not possible
         '''
+        #print('xy: ', x,y)
         if self.__map[y][x] == '0':
             self.__map[y][x] = newCel
             return 0

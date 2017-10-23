@@ -3,22 +3,19 @@ import time
 import copy
 
 from model.World import World
-__height = 10
-__width = 10
-__wallNumber = 10
-__foodNumber = 25
-__robotNumber = 10
+__height = 11
+__width = 15
+__wallNumber = 11
+__foodNumber = 20
+__robotNumber = 7
 
 __wallSymbol = '#'
 __foodSymbol = 'F' # I used 'F' instead of 'o' due to readability problems :)
 __robotSymbol ='R' #Remember to add number to conform on R# format ( even R### format is supported from map atm)
 
-__worldCopyForBenchmark = World(__height, __width)
-
 
 def main():
-    world = World(__height, __width)
-    __worldCopyForBenchmark = copy.deepcopy(world)
+    world = World(__width, __height)
 
     #zeroes on the map feels so loonely... let's populate the map ;)
     world.placeRandomObject(__wallSymbol,__wallNumber)
